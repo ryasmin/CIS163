@@ -48,14 +48,28 @@ matrix = [[1, 2, 3],
 
 <br/>
 
-**Exercise 5:** Remove all even numbers from the given list of integers.
+**Exercise 5:** 
+
+(a) What would be the output of the following code snippets?
+```
+fruits = ["apple", "banana", "cherry", "kiwi", "mango"]
+for x in fruits:
+  if "a" in x:
+    fruits.remove(x)
+print(fruits)
+```
+(b) Is there anything wrong with the output? If there is, how would you solve it?
+
+<br/>
+
+**Exercise 6:** Remove all even numbers from the given list of integers.
 ```
 numbers = [1, 2, 4, 5, 6, 9]
 ```
 
 <br/>
 
-**Exercise 6:** Remove your faculty's name from a pizza party list.
+**Exercise 7:** Remove your faculty's name from a pizza party list.
 ```
 fun_people_list = ["a", "b", "c", "d", "faculty_name", "e"]
 ```
