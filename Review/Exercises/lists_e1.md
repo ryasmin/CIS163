@@ -58,7 +58,14 @@ for x in fruits:
     fruits.remove(x)
 print(fruits)
 ```
-(b) Is there anything wrong with the output? If there is, how would you solve it?
+
+```
+nums = [1, 2, 3]
+for i in nums:
+  nums.append(i**2)
+```
+
+(b) Is there anything wrong with the outputs? If there is, how would you solve them?
 
 <br/>
 
