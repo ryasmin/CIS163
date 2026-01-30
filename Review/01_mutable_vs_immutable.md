@@ -26,9 +26,9 @@ print(word)
   *  The name `word` is now bound (points) to that object.
   *  Think of `word` as a sticky note with the label "word" stuck onto the `cat` object.
 
-```
-word ──▶  "cat"
-```
+  ```
+  word ──▶  "cat"
+  ```
 
 - Step 2: Build a new string during concatenation
 
@@ -38,12 +38,12 @@ word ──▶  "cat"
   * Because strings are immutable (cannot be changed), Python does NOT add the letter onto the existing `cat` object.
   * Instead, it creates a brand-new string: `cats`.
 
-```
-word ──▶  "cat"      "s"
-               ╲     /
-                ╲   /
-               (makes new) ──▶ "cats"
-```
+  ```
+  word ──▶  "cat"      "s"
+                 ╲     /
+                  ╲   /
+                 (makes new) ──▶ "cats"
+  ```
 
 - Step 3: Rebind the name (`word`) to the new object (`cats`)
 
@@ -52,11 +52,11 @@ word ──▶  "cat"      "s"
   * Now Python rebinds the name `word` so it points to `cats`.
   * The old `cat` object is left behind. Since no other names point to it, Python will clean it up later (garbage collection).
 
-```
-word ──▶  "cats"
-("cat" is now unreferenced and may be cleaned up later)
-```
-*Important*: The original "cat" object was not changed. We simply moved the sticky note word from "cat" to "cats".
+  ```
+  word ──▶  "cats"
+  ("cat" is now unreferenced and may be cleaned up later)
+  ```
+  *Important*: The original "cat" object was not changed. We simply moved the sticky note word from "cat" to "cats".
 
 ---
 
@@ -80,9 +80,9 @@ print(pets)
   * Python makes a list object in memory containing three elements.
   * The name `pets` is bound to this list object.
 
-```
-pets ──▶ ["cat", "dog", "hamster"]
-```
+  ```
+  pets ──▶ ["cat", "dog", "hamster"]
+  ```
 
 - Step 2: Modify the list in place
 
@@ -92,7 +92,7 @@ pets ──▶ ["cat", "dog", "hamster"]
   * The first element `cat` is replaced by `parrot`.
   * Important: the list object in memory does not move or change identity. Its contents change.
 
-```
-pets ──▶ ["parrot", "dog", "hamster"]
-(Same list object, just updated inside.)
-```
+  ```
+  pets ──▶ ["parrot", "dog", "hamster"]
+  (Same list object, just updated inside.)
+  ```
