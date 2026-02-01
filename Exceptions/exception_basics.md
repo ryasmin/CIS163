@@ -29,6 +29,8 @@ Python provides four keywords for handling exceptions:
 try:
     # Code 
 except SomeException:
+    # Code
+except:
     # Code 
 else:
     # Code 
