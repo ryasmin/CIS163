@@ -77,6 +77,8 @@ Useful for:
 - logging, or
 - providing more detailed feedback.
 
+___Note:___ `e` is just a placeholder variable name. Any valid variable name can be used. Although `e` or `exp` is the most widely used by convention.
+
 ```
 try:
     num = int(input("Enter a number: "))
