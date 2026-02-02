@@ -43,5 +43,16 @@ if __name__ == '__main__':
         print('all finished')
 ```
 
-__Task:__ Without running the code, trace the flow of execution and determine the output that this program prints.
-Write them down in the correct order.
+__Tasks:__ 
+
+1. Without running the code, trace the flow of execution and determine the output that this program prints. Write them down in the correct order.
+2. Suppose the `__init__` method in `ExceptionFun` is modified as follows:
+    ```
+    def __init__(self, n):
+        self.mylst = []
+        for i in range(n):
+            self.mylst.append(Car())
+    ```
+    How does this change affect the behavior of the program?
+3. What additional changes (if any) are required to ensure the program runs without raising any exceptions?
+   
