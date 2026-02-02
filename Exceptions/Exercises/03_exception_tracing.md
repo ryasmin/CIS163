@@ -9,14 +9,18 @@ def foo(lst):
         print("entering try")
         x = ord(lst[0][0])/0
         print("leaving try")
+
     except ZeroDivisionError:
         print("caught zde")
         raise ArithmeticError('was divide by 0')
+
     except ArithmeticError:
         print('caught ae')
         raise Exception('was an AE')
+
     except Exception:
         print("caught e")
+
     else:
         print('no e')
     finally:
