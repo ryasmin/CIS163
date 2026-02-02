@@ -32,4 +32,5 @@ except Exception:
 print(len(my_lst))
 ```
 
-__Task:__ Running this program will give exactly 5 lines of output. What will they be?
+__Task:__ Without running the code, trace the flow of execution and determine exactly five lines of output that this program prints.
+Write them down in the correct order.
