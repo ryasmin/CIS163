@@ -43,5 +43,5 @@ if __name__ == '__main__':
         print('all finished')
 ```
 
-__Task:__ Without running the code, trace the flow of execution and determine exactly five lines of output that this program prints.
+__Task:__ Without running the code, trace the flow of execution and determine the output that this program prints.
 Write them down in the correct order.
