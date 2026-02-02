@@ -8,7 +8,6 @@ def register_ticket():
 
     print("Step 1: Raw inputs collected.")
 
-    # Built-in ValueError possible here
     age = int(age_str)
     tickets = int(tickets_str)
 
