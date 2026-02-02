@@ -12,7 +12,7 @@ def foo(lst):
 
     except ZeroDivisionError:
         print("caught zde")
-        raise ArithmeticError('was divide by 0')
+        raise ArithmeticError("was divided by 0")
 
     except ArithmeticError:
         print("caught ae")
@@ -51,4 +51,6 @@ __Task:__
    How does this change affect the behavior of the program?
 3. Given the new output of Q2, describe a practical scenario where having a `finally` block in such nested exception handling would be useful.
    __Hint:__ If you open a file you definitely need to close it.
+4. When the `ArithmeticError` handler is executed, why is the message `"was divided by 0"` not printed?
+5. How would you modify the code so that the message `"was divided by 0"` is printed before the program prints `"cannot do bad math"`?
 
