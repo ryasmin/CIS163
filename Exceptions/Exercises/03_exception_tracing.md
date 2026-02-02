@@ -1,5 +1,7 @@
 # Exception Tracing: 03 Exercise
 
+> Credit: Erin Carrier
+> 
 ```
 def foo(lst):
     try:
