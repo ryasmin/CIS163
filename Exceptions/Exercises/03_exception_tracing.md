@@ -27,6 +27,7 @@ def foo(lst):
         print("finally")
 
 my_lst = ['dog','cat','elephant']
+
 try:
     foo(my_lst)
 except ZeroDivisionError:
@@ -35,6 +36,7 @@ except ArithmeticError:
     print('cannot do bad math')
 except Exception:
     print('something bad happened')
+
 print(len(my_lst))
 ```
 
