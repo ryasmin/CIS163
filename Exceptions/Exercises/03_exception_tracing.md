@@ -26,7 +26,7 @@ def foo(lst):
     finally:
         print("finally")
 
-my_lst = ['dog','cat','elephant']
+my_lst = ["dog","cat","elephant"]
 
 try:
     foo(my_lst)
