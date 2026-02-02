@@ -4,11 +4,9 @@ def parse_positive_int():
     s = input("Enter a positive integer: ")
     print("Step 1: Got raw input:", s)
 
-    # This line may raise a built-in ValueError
     n = int(s)
     print("Step 2: Converted to int:", n)
 
-    # This line may raise a forced (manual) ValueError
     if n <= 0:
         raise ValueError("Number must be positive.")
 
