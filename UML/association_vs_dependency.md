@@ -1,3 +1,5 @@
+# Association vs Dependency
+
 ## Step 0 – Starter class (the “anchor”)
 
 ```
