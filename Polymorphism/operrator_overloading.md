@@ -1,4 +1,4 @@
-## Operator Overloading
+# Operator Overloading
 
 What Happens When We Use Operators?
 - `5 + 3 = 8`              -> Integer Addition
