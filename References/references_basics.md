@@ -1,4 +1,4 @@
-## Variables Store References, Not Objects
+# Variables Store References, Not Objects
 
 In Python:
 - A variable does NOT store the object itself.
@@ -15,7 +15,7 @@ print(id(y))      # Example Output: 140564025360880
 
 Each `3000` is a new instance of the `int` class. 
 
-#### Exception:
+#### Small-int "Exception"
 ```
 x = 5
 y = 5
@@ -26,14 +26,14 @@ print(id(y))      # Example Output: 11654504
 - __Note:__
     - Unlike previous example, both `x` and `y` are referencing the same object.
 - __Explanation:__
-    - Python precreates small integers from -5 to 256 to optimize performance.
+    - CPython (the standard Python implementation) pre-creates small integers, typically from -5 to 256, to optimize performance.
     - That means these integer objects are created in advance and reused instead of being recreated each time.
 
 <br>
 
-### Mutable vs Immutable Objects
+## Mutable vs Immutable Objects
 
-#### How references to ___Immutable___ obejcts work
+### 1. How references to ___Immutable___ objects work
 ```
 x = 5
 y = x
@@ -42,12 +42,12 @@ print(x, id(x))
 print(y, id(y))
 
 x = 10
-# ----- Step 1 -------
+# ----- Step 2 -------
 print(x, id(x))
 print(y, id(y))
 ```
 ___Explanation:___
-- Reassignment: `5` (`int`) is immutable (cannot be changed), so need to create a new object `10`, not replace `5`.
+- Reassignment: `5` (`int`) is immutable (cannot be modified in place), so need to create a new object `10`, not replace `5`.
 - At Step 1
   ```
   x  ──> 5 <── y
@@ -60,7 +60,7 @@ ___Explanation:___
    x  ──> 10
    ```
 
-#### How references to ___Mutable___ obejcts work
+### 2. How references to ___Mutable___ objects work
 ```
 a = [1,2,3]
 b = a
@@ -75,7 +75,7 @@ print(b, id(b))
 ```
 
 ___Explanation:___
-- Mutation: `a` (`list`) is mutable (can be modified), so no need to create a new object.
+- Mutation: `a` (`list`) is mutable (can be modified in place), so no need to create a new object.
 - At Step 1
   ```
   a  ──> [1, 2, 3] <── b
@@ -88,14 +88,22 @@ ___Explanation:___
 
 <br>
 
-### Function Arguments Are References
+## Function Arguments and Returns Are References
+Python uses pass-by-assignment (sometimes loosely called pass-by-object-reference).
+
+When you:
+- pass an argument → the parameter name is bound to the same object
+- return a value → the receiving variable is bound to the same object
+
+No copying happens unless you explicitly create a new object.
+
 > In Python function parameters receive references to objects, not copies of objects.
 
 - Python DOES NOT pass variables.
 - Python DOES NOT pass raw values.
 - Python passes references to objects.
 
-#### Immutable Example
+### 1. Immutable Example (Reassignment)
 ```
 1. def modify(x):
 2.     x = 10
@@ -105,12 +113,12 @@ ___Explanation:___
 6. print(a)        # Output: 5
 ```
 
-What Happens (Reassignment):
+What Happens:
 - Line 4:       `a ──> 5`
 - Line 5 and 1: `a ──> 5 <── x`
 - Line 2:       `a ──> 5,     x ──> 10`
 
-#### Mutable Example
+### 2. Mutable Example (Mutation)
 ```
 1. def modify(lst):
 2.     lst.append(100)
@@ -120,24 +128,58 @@ What Happens (Reassignment):
 6. print(a)
 ```
 
-What Happens (Mutation):
+What Happens:
 - Line 4:       `a ──> [1, 2, 3]`
 - Line 5 and 1: `a ──> [1, 2, 3] <── lst`
 - Line 2:       `a ──> [1, 2, 3, 100] <── lst`
 
-#### Reassignment with Mutable Types
+### 3. Argument Passing Bug (Mutation vs Reassignment)
 ```
-def modify(lst):
-    lst = [9, 9, 9]
-
-a = [1, 2, 3]
-modify(a)
-print(a)
+1. def clear_list(lst):
+2.    lst = []   
+3. 
+4. numbers = [1, 2, 3]
+5. clear_list(numbers)
+6. print(numbers)
 ```
 
+What Happens (Reassignment):
+- Line 4:       `numbers ──> [1, 2, 3]`
+- Line 5 and 1: `numbers ──> [1, 2, 3] <── lst`
+- Line 2:       `numbers ──> [1, 2, 3]         lst ──> [] `
+
+Correct Version (Mutation):
+```
+def clear_list(lst):
+    lst.clear()
+```
+
+### 4. Return Value Bug (Aliasing Problem)
+```
+class Account:
+    def __init__(self, balance):
+        self.balance = balance
+
+    def __add__(self, other):
+        self.balance += other.balance
+        return self
+
+a1 = Account(100)
+a2 = Account(50)
+a3 = a1 + a2
+a3.balance = 0
+print(a1.balance)
+```
+
+What Happens:
+- Inside `__add__`, `self.balance += other.balance` mutates `a1`:
+      ```
+      100 + 50 → a1.balance = 150
+      ```
+- Then `return self` returns a reference to the same object as `a1`.
 <br>
 
-### Default Mutable Argument Trap
+## Default Mutable Argument Trap
 ```
 def add_item(item, lst=[]):
     lst.append(item)
@@ -182,7 +224,7 @@ What Happens:
   append 3        lst ──> [1, 2, 3]
   ```
 
-  Correct way to write it:
+  Correct Version:
   ```
   def add_item(item, lst=None):
     if lst is None:
