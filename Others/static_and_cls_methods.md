@@ -103,7 +103,7 @@ A class method:
 - Often used as alternative constructors
 
 ### Example 1 — Alternative Constructor
-```
+```python
 class Employee:
     raise_amt = 1.04
 
