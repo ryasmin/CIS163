@@ -1,5 +1,5 @@
 ## Exercise: Balloon
-```
+```python
 class Balloon:
     def __init__(self, c):
         self.color = c
