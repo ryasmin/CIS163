@@ -147,7 +147,7 @@ emp = Employee.from_string("John-50000")
 - Needs to use class name (issue if name changed or inherited)
 
 ### Example 2 — Modifying Class-Level Data
-```
+```python
 class Employee:
 
     raise_amt = 1.04
