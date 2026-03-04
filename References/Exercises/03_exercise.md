@@ -1,5 +1,5 @@
 ## Exercise: Car
-```
+```python
 class Car:
 
     def __init__(self, color, doors):
