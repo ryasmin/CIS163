@@ -1,8 +1,9 @@
+## Fix the Code
 Suppose we are building a simple notification system for an app. 
 We currently support three types of notifications: email, SMS, and push. 
 Consider the following "Ugly Version":
 
-```
+```python
 class EmailNotification:
     def __init__(self, address, subject, body):
         self.address = address
