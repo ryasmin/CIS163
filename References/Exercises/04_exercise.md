@@ -1,6 +1,6 @@
 ## Exercise: Widget
 
-```
+```python
 class Widget:
     def __init__(self, name, value):
         self.name = name
