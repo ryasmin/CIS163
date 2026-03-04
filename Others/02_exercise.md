@@ -7,7 +7,7 @@ Your task is to:
 - Identify which methods are incorrectly defined.
 - Modify each method to use the correct decorator.
 
-```
+```python
 class GameConfig:
     max_players = 4
     bonus_multiplier = 1.0
