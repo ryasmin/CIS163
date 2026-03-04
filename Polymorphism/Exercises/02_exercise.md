@@ -1,9 +1,10 @@
+## Fix the Code
 Consider a shopping cart system. There are three purchasable types:
 1. PhysicalProduct
 2. DigitalProduct
 3. Subscription
 
-```
+```python
 class PhysicalProduct:
     def __init__(self, name, price, shipping_cost):
         self.name = name
