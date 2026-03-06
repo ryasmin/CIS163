@@ -104,6 +104,8 @@ Use cases:
 - To modify class attributes
 - Often used as alternative constructors
 
+<br>
+
 ### Use Case 1 — As Alternative Constructor
 ```python
 class Employee:
@@ -122,6 +124,8 @@ class Employee:
 
 emp = Employee.from_string("John-50000")
 ```
+
+<br>
 
 #### Why NOT use an Instance Method?
 
