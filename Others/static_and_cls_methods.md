@@ -23,7 +23,7 @@ print(calc.get_calculator_info())
 
 <br>
 
-## Part 2 — When a Method Does NOT Need `self`
+### When a Method Does NOT Need `self`
 Now consider the following method:
 ```python
 class Calculator:
@@ -38,8 +38,8 @@ This is where `@staticmethod` becomes useful.
 
 <br>
 
-## Part 3 — `@staticmethod`
-A static method:
+## Part 2 — `@staticmethod`
+A __Static__ method:
 - Does NOT take `self` or `cls`
 - Does NOT access instance or class attributes
 - Is logically related to the class
@@ -57,7 +57,7 @@ class Calculator:
 ```python
 Calculator.add_numbers([1, 2, 3, 4])
 ```
-- DO NOT need an instance.
+   - DO NOT need an instance to call.
 
 #### Example: Calender Validation
 
@@ -86,7 +86,7 @@ print(Calendar.is_weekend(exam))
 
 <br>
 
-## Part 4 — When You Need Access to the Class
+### When You Need Access to the Class 
 Sometimes you don’t need instance data. But you DO need class data.
 - class variables
 - class name
@@ -95,19 +95,23 @@ That’s where `@classmethod` comes in.
 
 <br>
 
-## Part 5 — `@classmethod`
-A class method:
+## Part 3 — `@classmethod`
+A __Class__ method:
 - Takes `cls` as the first parameter
 - Operates on the class itself
-- Can modify class attributes
+
+Use cases:
+- To modify class attributes
 - Often used as alternative constructors
 
-### Example 1 — Alternative Constructor
+### Use Case 1 — As Alternative Constructor
 ```python
 class Employee:
+    # Class Attributes
     raise_amt = 1.04
 
     def __init__(self, name, pay):
+        # Instance Attributes
         self.name = name
         self.pay = int(pay)
 
@@ -118,6 +122,7 @@ class Employee:
 
 emp = Employee.from_string("John-50000")
 ```
+
 #### Why NOT use an Instance Method?
 
 ```python
@@ -127,11 +132,34 @@ class Employee:
         name, pay = emp_str.split('-')
         return Employee(name, pay)
         
-emp = Employee("dummy", 0)
-emp.from_string("John-50000")  # Awkward and wrong
+dummy = Employee("dummy", 0)
+emp = dummy.from_string("John-50000")  # Awkward
 ```
 - Cannot call without creating an instance
-- Needs to use class name (issue if name changed or inherited)
+- Needs to use class name
+- Issues
+      - if class name changes - need to manually change everywhere you have `Employee`
+      - if inheritance comes into play cannot create child instance
+
+Example for Inheritance
+```python
+class Employee:
+    ...
+    def from_string(self, emp_str):
+        name, pay = emp_str.split('-')
+        return Employee(name, pay)
+
+class SalaryEmployee(Employee):
+    pass
+
+dummy = SalaryEmployee("dummy", 0)
+emp = dummy.from_string("John-50000")
+print(type(emp)))                # Employee
+```
+
+Here `emp` is an instance of the `Employee` class, NOT `SalaryEmployee`.
+
+<br>
 
 #### Why NOT use a Static Method?
 ```python
@@ -146,21 +174,26 @@ emp = Employee.from_string("John-50000")
 ```
 - Needs to use class name (issue if name changed or inherited)
 
-### Example 2 — Modifying Class-Level Data
+<br>
+
+### Use Case 2 — For Modifying Class-Level Data
+In the example of Use Case 1, `raise_amt ` was a class variable.
+If you want to change it, you can using 
+```python
+Employee.raise_amt = 150000
+```
+
+What if you want to provide validation for setting a new value for it? Use `classmethod`.
 ```python
 class Employee:
-
     raise_amt = 1.04
-
-    def __init__(self, name, pay):
-        self.name = name
-        self.pay = pay
-
-    def apply_raise(self):
-        self.pay = int(self.pay * self.raise_amt)
-
+    ...
     @classmethod
     def set_raise_amt(cls, amt):
+        if not isinstance(amt, float):
+            raise TypeError
+        if amt < 0 or amt > 2:
+            raise ValueError
         cls.raise_amt = amt
 
 Employee.set_raise_amt(2.0)
@@ -172,14 +205,11 @@ Employee.set_raise_amt(2.0)
 
 When writing a method, ask:
 
-1️⃣ Does it use instance data?
-→ Yes → Instance method (`self`)
+1️⃣ Does it use instance data? → Yes → Instance method (`self`)
 
-2️⃣ Does it use class-level data but not instance data?
-→ Yes → Class method (`cls`)
+2️⃣ Does it use class-level data (or name) but not instance data? → Yes → Class method (`cls`)
 
-3️⃣ Does it use neither?
-→ Yes → Static method
+3️⃣ Does it use neither? → Yes → Static method
 
 <br>
 
