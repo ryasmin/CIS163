@@ -13,12 +13,15 @@ def checkout(customer, item, price):
 ## Keyword Arguments
 
 A keyword argument assigns values to parameters by name, not position.
-
 ```python
 checkout(customer="Alice", item="Laptop", price=1200)
 ```
 
-This prevents mistakes when there are many parameters.
+Advantages of Keyword Arguments
+- More readable
+- Order does not matter
+- Useful when functions have many parameters
+
 ```python
 def print_date(day, month, year):
   print(f"{month}/{day}/{year}")
@@ -27,12 +30,6 @@ print_date(3, 15, 2026)
 print_date(month=3, day=15, year=2026)
 ```
 
-Advantages of Keyword Arguments
-- More readable
-- Order does not matter
-- Useful when functions have many parameters
-
-
 > You can combine both positional and keyword arguments, but positional arguments must come first.
 
 ```python
@@ -40,8 +37,8 @@ checkout("Alice", item="Laptop", price=1200)
 print_date(3, day=15, year=2026)
 ```
 
-Invalid 🚫:
-```
+🚫 Invalid Calls:
+```python
 checkout(customer="Alice", "Laptop", 1200)
 print_date(day=15, 3, year=2026)
 ```
@@ -50,23 +47,24 @@ print_date(day=15, 3, year=2026)
 
 ## Variable Number of Positional Arguments: `*args`
 
-Sometimes you don't know how many arguments a function will receive. Instead of forcing users to create a list, we can allow any number of positional arguments.
+Sometimes you don't know how many arguments a function will receive. 
+Instead of forcing users to create a list, we can allow any number of positional arguments.
 
-Example: Chekout with Multiple Items
+#### Example: Checkout with Multiple Items
 ```python
 def checkout(*items):
     print("Items purchased:")
     for item in items:
         print("-", item)
 
-checkout("apple", "banana", "milk")
-checkout("mango", "kiwi")
+checkout("Laptop", "Mouse", "Keyboard")
+checkout("Laptop", "Mouse")
 ```
 
-Here `*items` collects all positional arguments into a tuple.
+Here `*items` collects all positional arguments into a tuple inside the function.
 ```python
-items = ("apple", "banana", "milk")
-items = ("mango", "kiwi")
+items = ("Laptop", "Mouse", "Keyboard")
+items = ("Laptop", "Mouse")
 ```
 
 Python's built-in `print()` function works the same way.
@@ -81,36 +79,19 @@ print("Hello", "world", "!")
 `**kwargs` allows functions to accept any number of named arguments.
 
 ```python
-def checkout(customer, *items, **details):
-
-    print("Customer:", customer)
-
-    print("Items :")
-    for item in items:
-        print("-", item)
-
+def checkout(**details):
     print("Order details:")
     for key, value in details.items():
         print(f"{key}: {value}")
+
+checkout(payment="Credit Card", shipping="Express")
+checkout(payment="Credit Card", shipping="Express", state="Michigan")
 ```
 
-Here `**info` collects all keyword arguments into a dictionary.
+Here `**details` collects all keyword arguments into a dictionary.
 ```python
-info = {
-  "name": "Alice",
-  "age": 25,
-  "city": "Chicago"
-}
-```
-
-```python
-def create_account(username, **details):
-    print(f"Creating account for {username}")
-    
-    for key, value in details.items():
-        print(f"{key}: {value}")
-
-create_account("john123", email="john@email.com", country="USA")
+details = {"payment"="Credit Card", "shipping"="Express"}
+details = {"payment"="Credit Card", "shipping"="Express", "state"="Michigan"}
 ```
 
 ## Using *args and **kwargs Together
