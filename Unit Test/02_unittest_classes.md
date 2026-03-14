@@ -31,7 +31,7 @@ When we buy "health":
 - `health` count should increase by 1,
 - `gold` should decrease by the health price.
 
-```
+```python
 import unittest
 
 class TestPotionShop(unittest.TestCase):
@@ -52,7 +52,8 @@ __Questions:__
 
 ## Part C — The Most Common Mistake: Shared State Between Tests
 This version creates a single shop that all tests share:
-```
+
+```python
 class TestPotionShopBad(unittest.TestCase):
     shop = PotionShop(100)
 
