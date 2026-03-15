@@ -50,7 +50,7 @@ for c in Contact.all_contacts:
 ```
 
 
-> What would be the output of the for loop?
+> What would be the output?
 
 ---
 
@@ -80,7 +80,7 @@ class Supplier(Contact):
   def order(self, order_no: int):
     print(f"{order_no} order to {self.name}")
 
-s1 = Supplier("Eddy", "eddy@hellfireclub.com)
+s1 = Supplier("Eddy", "eddy@hellfireclub.com")
 ```
 
 __Description__
@@ -110,18 +110,29 @@ Next, create a class `Friend` that also inherits from `Contact`.
 
 ---
 
-<details>
+__Solution__
 
-<summary>Solution</summary>
-
-```
+```python
 class Friend(Contact):
   def __init__(self, name, email, phone):
     super().__init__(name, email)
     self.phone = phone
-```
-</details> 
 
+f1 = Friend("bunny", "bunny@hellfireclub.com", 100300555)
+```
+
+__Description__
+
+Here `f1`(`Friend`) has:
+
+- __THREE__ instance attributes:
+   1. `name` $\rightarrow$ from parent
+   2. `email` $\rightarrow$ from parent
+   3. `phone` $\rightarrow$ from itself
+- __ONE__ class attribute: `all_contacts`
+- __TWO__ methods:
+   1. `__init__` $\rightarrow$ from itself
+   2. `__str__` $\rightarrow$ from parent
 ---
 
 <br>
@@ -129,6 +140,7 @@ class Friend(Contact):
 ### Step 3: Override Existing Behaviour of Parent
 
 ☑️: Same method name
+
 ☑️: Different implementation
 
 Create a new `__str__` method in `Friend` so that it overrides the `__str__` method in `Contact` and returns:
@@ -138,9 +150,7 @@ Create a new `__str__` method in `Friend` so that it overrides the `__str__` met
 
 ---
 
-<details>
-
-<summary>Solution</summary>
+__Solution__
 
 ```
 class Friend(Contact):
@@ -157,8 +167,7 @@ for c in Contact.all_contacts:
   print(c)
 ```
 
-> What would be the output of the for loop?
-</details> 
+> What would be the output?
 
 ---
 
@@ -167,12 +176,13 @@ for c in Contact.all_contacts:
 ### Step 4: Extend Parent's Behaviour with `super()`
 
 ☑️: Reuses parent behavior
+
 ☑️: Adds additional functionality
 
 Now create a class `BestFriend` that inherits from `Friend`. This gives you 3 levels of inheritance:
 
 ```
-Contact  →  Friend  →  BestFriend
+Contact  —>  Friend  —>  BestFriend
 ```
 
 This new class should:
@@ -182,17 +192,14 @@ This new class should:
 - Extend the `__str__` method (extend the parent's behaviour) using `super()` instead of replacing it completely.
     - First, call `__str__` using `super()` to get the string from `Friend`.
     - Then add `" [nickname: <nickname>]"` to the end.
-  
-  The new `__str__` should be in the format:
-  ```
-  <name>, <email>, <phone> [nickname: <nickname>]
-  ```
+    - The new `__str__` should be in the format:
+      ```
+      <name>, <email>, <phone> [nickname: <nickname>]
+      ```
 
 ---
 
-<details>
-
-<summary>Solution</summary>
+__Solution__
 
 ```
 class BestFriend(Friend):
@@ -209,8 +216,7 @@ for c in Contact.all_contacts:
   print(c)
 ```
 
-> What would be the output of the for loop?
-</details> 
+> What would be the output?
 
 ---
 
