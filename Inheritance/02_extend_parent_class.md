@@ -42,13 +42,12 @@ class Contact:
   def __str__(self):
     return f"{self.name}, {self.email}"
 
-c1 = Contact("Dusty", "dusty@example.com")
-c2 = Contact("Steve", "steve@itmaybeahack.com")
+c1 = Contact("Dustin", "dustin@hawkins.com")
+c2 = Contact("Steve", "steve@hawkins.com")
 
 for c in Contact.all_contacts:
   print(c)
 ```
-
 
 > What would be the output?
 
@@ -80,7 +79,8 @@ class Supplier(Contact):
   def order(self, order_no: int):
     print(f"{order_no} order to {self.name}")
 
-s1 = Supplier("Eddy", "eddy@hellfireclub.com")
+# Eddie supplies D&D stuff
+s1 = Supplier("Eddie", "eddie@hellfireclub.com")
 ```
 
 __Description__
@@ -118,7 +118,7 @@ class Friend(Contact):
     super().__init__(name, email)
     self.phone = phone
 
-f1 = Friend("bunny", "bunny@hellfireclub.com", 100300555)
+f1 = Friend("Mike", "mike@hawkins.com", "555-1111")
 ```
 
 __Description__
@@ -152,7 +152,7 @@ Create a new `__str__` method in `Friend` so that it overrides the `__str__` met
 
 __Solution__
 
-```
+```python
 class Friend(Contact):
   def __init__(self, name, email, phone):
     super().__init__(name, email)
@@ -161,7 +161,7 @@ class Friend(Contact):
   def __str__(self):
     return f"{self.name}, {self.email}, {self.phone}"
 
-f = Friend("Dusty", "Dusty@private.com", "555-1212")
+f2 = Friend("Lucas", "lucas@hawkins.com", "555-2222")
 
 for c in Contact.all_contacts:
   print(c)
@@ -201,7 +201,7 @@ This new class should:
 
 __Solution__
 
-```
+```python
 class BestFriend(Friend):
   def __init__(self, name, email, phone, nickname):
     super().__init__(name, email, phone)
@@ -210,7 +210,10 @@ class BestFriend(Friend):
   def __str__(self):
     return super().__str__() + f" [nickname: {self.nickname}]"
 
-bf = BestFriend("Alice", "alice@example.com", "555-9999", "Ally")
+bf = BestFriend("Eleven",
+                "el@hawkins.com",
+                "555-0000",
+                "El")
 
 for c in Contact.all_contacts:
   print(c)
