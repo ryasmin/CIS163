@@ -54,6 +54,25 @@ obj.greet()
 
 ### Exercise 4
 ```python
+class SomeOne:
+    def msg(self):
+        return "Hello"
+    
+    def show(self):
+        print(self.msg())
+
+class NoOne(SomeOne):
+    def msg(self):
+        return "Hi"
+
+c = NoOne()
+c.show()
+```
+
+<br>
+
+### Exercise 5
+```python
 class Animal:
     def __init__(self, species):
         print(f"Animal created: {species}")
@@ -68,7 +87,7 @@ dog = Dog("Golden Retriever")
 
 <br>
 
-### Exercise 5
+### Exercise 6
 ```python
 class Animal:
     def __init__(self, species):
@@ -89,7 +108,7 @@ dog = Dog("Labrador")
 
 <br>
 
-### Exercise 6
+### Exercise 7
 ```python
 class Employee:
     def __init__(self, name, emp_id):
@@ -132,7 +151,7 @@ e3.approve_leave(5)
 
 <br>
 
-### Exercise 7
+### Exercise 8
 ```python
 class Product:
     def __init__(self, name, price):
@@ -163,7 +182,143 @@ ebook1 = Ebook("Python Mastery", 30, 0.5, 5, 20)
 
 <br>
 
-### Exercise 8
+### Exercise 9
+```python
+class Animal:
+    kingdom = "Animalia"
+    total_animals = 0
+
+    def __init__(self, name, age, sound):
+        self.name = name
+        self.age = age
+        self.sound = sound
+        Animal.total_animals += 1
+        print(f"Animal created: {self.name}")
+
+    def make_sound(self):
+        print(f"{self.name} says: {self.sound}")
+
+    def birthday(self):
+        self.age += 1
+        print(f"{self.name} is now {self.age} years old.")
+
+    def info(self):
+        return f"{self.name} is {self.age} years old."
+
+
+class Mammal(Animal):
+    def __init__(self, name, age, sound, fur_color, number_of_legs):
+        super().__init__(name, age, sound)
+        self.fur_color = fur_color
+        self.number_of_legs = number_of_legs
+        print(f"{self.name} is a mammal with {self.fur_color} fur.")
+
+    def make_sound(self):
+        print(f"Mammal sound check for {self.name}")
+        super().make_sound()
+
+    def give_birth(self, baby_name):
+        print(f"{self.name} gave birth to {baby_name}")
+        return Mammal(
+            baby_name,
+            0,
+            self.sound,
+            self.fur_color,
+            self.number_of_legs
+        )
+
+    def move(self):
+        print(f"{self.name} walks on {self.number_of_legs} legs.")
+
+
+class Bird(Animal):
+    def __init__(self, name, age, sound, wingspan):
+        super().__init__(name, age, sound)
+        self.wingspan = wingspan
+        print(f"{self.name} is a bird with a wingspan of {self.wingspan}.")
+
+    def move(self):
+        print(f"{self.name} flies through the sky.")
+
+    def birthday(self):
+        print(f"Checking birthday for bird {self.name}")
+        super().birthday()
+
+
+class Reptile(Animal):
+    def __init__(self, name, age, sound, scale_color):
+        super().__init__(name, age, sound)
+        self.scale_color = scale_color
+        print(f"{self.name} is a reptile with {self.scale_color} scales.")
+
+    def move(self):
+        print(f"{self.name} crawls slowly.")
+
+    def shed_skin(self):
+        print(f"{self.name} shed its {self.scale_color} skin.")
+
+
+class Dog(Mammal):
+    species = "Dog"
+
+    def __init__(self, name, age, fur_color):
+        super().__init__(name, age, "Woof", fur_color, 4)
+        print(f"{self.name} is specifically a dog.")
+
+    def fetch(self, item):
+        print(f"{self.name} fetches the {item}.")
+
+
+class Eagle(Bird):
+    species = "Eagle"
+
+    def __init__(self, name, age):
+        super().__init__(name, age, "Screech", "Large")
+
+    def make_sound(self):
+        print(f"{self.name} the eagle prepares to make a sound.")
+        super().make_sound()
+
+
+dog = Dog("Molly", 5, "Brown")
+eagle = Eagle("Sky", 3)
+turtle = Reptile("Shelly", 10, "Hiss", "Green")
+
+dog.make_sound()
+dog.move()
+dog.fetch("ball")
+print()
+
+baby_dog = dog.give_birth("Charlie")
+baby_dog.make_sound()
+baby_dog.birthday()
+print()
+
+eagle.make_sound()
+eagle.move()
+eagle.birthday()
+print()
+
+turtle.make_sound()
+turtle.move()
+turtle.shed_skin()
+print()
+
+print(dog.info())
+print(baby_dog.info())
+print(eagle.info())
+print(turtle.info())
+print()
+
+print(Animal.kingdom)
+print(Animal.total_animals)
+print(Dog.species)
+print(Eagle.species)
+```
+
+<br>
+
+### Exercise 10
 ```python
 class BankAccount:
     bank_name = "Global Bank"
