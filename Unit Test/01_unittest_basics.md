@@ -128,7 +128,7 @@ class TestCalculator(unittest.TestCase):
 ## Testing Exceptions Correctly
 When a function is supposed to reject bad input, tests should confirm it raises the right exception.
 
-```
+```python
 def divide(x, y):
     if y == 0:
         raise ValueError("Cannot divide by zero!")
@@ -177,7 +177,7 @@ def validate_password(password):
     return True
 ```
 
-___TO DO:__
+__TO DO:__
 - Write your own test case to make sure each exception is raised properly.
 
 <br>
