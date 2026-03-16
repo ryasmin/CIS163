@@ -23,7 +23,7 @@ Example:
 
 <br>
 
-## Creating Inheritance Relationshsip
+## Creating Inheritance Relationship
 
 ### Step 1 — Base Class
 Suppose a company has employees. Every employee has:
@@ -109,6 +109,31 @@ print(emp1.email())        # Output: john.doe@company.com
 print(emp2.email())        # Output: jane.smith@company.com
 ```
 
+__Object Creation Trace__
+
+```
+emp1 = SalaryEmployee("John", "Doe")
+
+   Step 1: Look in SalaryEmployee for __init__
+   Step 2: ✖️ NO __init__ in SalaryEmployee
+   Step 3: 🔼 Go to parent (Employee)
+   Step 4: Employee.__init__ runs
+   Step 5: Store:
+              - self.first = "john" (emp1.first)
+              - self.last  = "doe"  (emp1.last)
+```
+
+__Method Call Trace__
+```
+emp1.email()
+
+   Step 1: Look in SalaryEmployee for email
+   Step 2: ✖️ NO email in SalaryEmployee
+   Step 3: 🔼 Go to parent (Employee)
+   Step 4: Employee.email runs
+   Step 5: Use emp1.first and emp1.last
+               - Return "john.doe@gmail.com"
+```
 <br>
 
 ### Step 4 — Adding New Attributes to Child
@@ -126,11 +151,33 @@ class SalaryEmployee(Employee):
     def payroll(self):
         return self.salary
 
-emp = SalaryEmployee("John", "Doe", 1000)
+emp1 = SalaryEmployee("John", "Doe", 1000)
 
-print(emp.email())
-print(emp.payroll())
+print(emp1.email())
+print(emp1.payroll())
 ```
+
+__Object Creation Trace__
+```
+emp1 = SalaryEmployee("John", "Doe", 1000)
+
+   Step 1: Look in SalaryEmployee for __init__
+   Step 2: SalaryEmployee has its own __init__
+   Step 3: Run SalaryEmployee.__init__
+   Step 4: super() means go to the parent class (Employee)
+   Step 5: Run Employee.__init__(first, last)
+   Step 6: Create attributes:
+              - self.first = "John"
+              - self.last = "Doe"
+   Step 7: Continue SalaryEmployee.__init__
+   Step 8: Create attribute:
+              - self.salary = 1000
+```
+
+Final object `emp1` has:
+- `self.first = "John"`
+- `self.last = "Doe"`
+- `self.salary = 1000`
 
 <br>
 
@@ -146,11 +193,18 @@ class HourlyEmployee(Employee):
     def payroll(self):
         return self.hours * self.rate
 
-emp = HourlyEmployee("Jane", "Smith", 40, 20)
+emp2 = HourlyEmployee("Jane", "Smith", 40, 20)
 
-print(emp.email())
-print(emp.payroll())
+print(emp2.email())
+print(emp2.payroll())
 ```
+
+Final object `emp2` has:
+- `self.first = "Jane"`
+- `self.last = "Smith"`
+- `self.hours = 40`
+- `self.rate = 20`
+
 
 <br>
 
@@ -177,6 +231,52 @@ class CommissionEmployee(SalaryEmployee):
 Here we used `super()` twice:
 - to call parent's (`SalaryEmployee`) constructor
 - to call parent's `payroll` method
+
+__Lookup Diagram — Constructor__
+```
+emp3 = CommissionEmployee("John", "Doe", 1000, 300)
+
+CommissionEmployee.__init__
+        ↓ super()
+SalaryEmployee.__init__
+        ↓ super()
+Employee.__init__
+   self.first = "John"
+   self.last  = "Doe"
+        ↓
+SalaryEmployee.__init__ continues
+   self.salary = 1000
+        ↓
+CommissionEmployee.__init__ continues
+   self.commission = 300
+```
+
+__Lookup Diagram — `email()`__
+```
+emp3.email()
+
+CommissionEmployee
+    ↓ no email
+SalaryEmployee
+    ↓ no email
+Employee.email
+    ↓
+use first + last
+```
+
+__Lookup Diagram — `payroll()`__
+```
+emp3.payroll()
+
+CommissionEmployee.payroll
+    ↓ super()
+SalaryEmployee.payroll
+   return self.salary = 1000
+    ↓
+CommissionEmployee.payroll continues
+   base  = 1000
+   return base + self.commission = 1000 + 300 = 1300
+```
 
 <br>
 
