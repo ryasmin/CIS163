@@ -52,7 +52,7 @@ class TestAdd(unittest.TestCase):
     def test_add_mixed(self):
         self.assertEqual(add(2, -3), -1)
 ```
-___TO DO:___ Write 3 more tests for add:
+__TO DO:__ Write 3 more tests for add:
 - `add(0, 0)`
 - `add(0, 5)`
 
