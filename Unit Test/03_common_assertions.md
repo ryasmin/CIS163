@@ -1,7 +1,7 @@
 ## Common `unittest` Assertions
 
 | Assertion | Purpose | Example |
-|----------|---------|---------|
+|-------|---------|---------|
 | `assertEqual(a, b)` | Checks that two values are equal | `def add(a, b): return a + b`<br> `self.assertEqual(add(2, 3), 5)` |
 | `assertNotEqual(a, b)` | Checks that two values are not equal | `def add(a, b): return a + b`<br> `self.assertNotEqual(add(2, 3), 6)` |
 | `assertTrue(x)` | Checks that the expression is `True` | `def is_valid(mystring): return True`<br> `self.assertTrue(is_valid("Secure123"))` |
@@ -13,6 +13,6 @@
 | `assertIn(a, b)` | Checks that `a` is contained in `b` | `user_roles = ["Admin", "User"]`<br> `self.assertIn("Admin", user_roles)` |
 | `assertNotIn(a, b)` | Checks that `a` is not contained in `b` | `user_roles = ["Admin", "User"]`<br> `self.assertNotIn("Guest", user_roles)` |
 | `assertAlmostEqual(a, b, places=2)` | Checks that two numbers are approximately equal (useful for floats) | `total = 0.1 + 0.2` <br>`self.assertAlmostEqual(total, 0.3)` |
-| `assertRaises(Exception)` | Checks that a function raises a specific exception | `with self.assertRaises(Exception):`<br> `  divide(5, 0)` |
-| `assertGreater(a, b)` | Checks that `a > b` | `self.assertGreater(score, 50)` |
-| `assertLess(a, b)` | Checks that `a < b` | `self.assertLess(error_rate, 0.1)` |
+| `assertRaises(Exception)` | Checks that a function raises a specific exception | `with self.assertRaises(ValueError):`<br> `    is_positive(-40)` <br> or <br> `self.assertRaises(ValueError, is_positive, -40)`|
+| `assertGreater(a, b)` | Checks that `a > b` | `score = 60` <br> `self.assertGreater(score, 50)` |
+| `assertLess(a, b)` | Checks that `a < b` | `error_rate = 0.01` <br> `self.assertLess(error_rate, 0.1)` |
