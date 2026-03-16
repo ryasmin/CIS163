@@ -1,4 +1,4 @@
-## ## Common `unittest` Assertions
+## Common `unittest` Assertions
 
 | Assertion | Purpose | Example |
 |----------|---------|---------|
