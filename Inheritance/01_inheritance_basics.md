@@ -109,30 +109,35 @@ print(emp1.email())        # Output: john.doe@company.com
 print(emp2.email())        # Output: jane.smith@company.com
 ```
 
-__Object Creation Trace__
+__Lookup Diagram — Constructor__
 
 ```
 emp1 = SalaryEmployee("John", "Doe")
 
-   Step 1: Look in SalaryEmployee for __init__
-   Step 2: ✖️ NO __init__ in SalaryEmployee
-   Step 3: 🔼 Go to parent (Employee)
-   Step 4: Employee.__init__ runs
-   Step 5: Store:
-              - self.first = "john" (emp1.first)
-              - self.last  = "doe"  (emp1.last)
+Look in SalaryEmployee for __init__
+        ↓
+✖️ NO __init__ in SalaryEmployee
+        ↓
+🔼 Go to parent (Employee)
+        ↓
+Employee.__init__ runs
+        - self.first = "john" (emp1.first)
+        - self.last  = "doe"  (emp1.last)
 ```
 
-__Method Call Trace__
+__Lookup Diagram — `email()`__
 ```
 emp1.email()
 
-   Step 1: Look in SalaryEmployee for email
-   Step 2: ✖️ NO email in SalaryEmployee
-   Step 3: 🔼 Go to parent (Employee)
-   Step 4: Employee.email runs
-   Step 5: Use emp1.first and emp1.last
-               - Return "john.doe@gmail.com"
+Look in SalaryEmployee for email
+        ↓
+✖️ NO email in SalaryEmployee
+        ↓
+🔼 Go to parent (Employee)
+        ↓
+Employee.email runs
+         - Use emp1.first and emp1.last
+         - Return "john.doe@gmail.com"
 ```
 <br>
 
@@ -161,17 +166,20 @@ __Object Creation Trace__
 ```
 emp1 = SalaryEmployee("John", "Doe", 1000)
 
-   Step 1: Look in SalaryEmployee for __init__
-   Step 2: SalaryEmployee has its own __init__
-   Step 3: Run SalaryEmployee.__init__
-   Step 4: super() means go to the parent class (Employee)
-   Step 5: Run Employee.__init__(first, last)
-   Step 6: Create attributes:
-              - self.first = "John"
-              - self.last = "Doe"
-   Step 7: Continue SalaryEmployee.__init__
-   Step 8: Create attribute:
-              - self.salary = 1000
+Look in SalaryEmployee for __init__
+        ↓
+SalaryEmployee has its own __init__
+        ↓
+Run SalaryEmployee.__init__
+        ↓
+super() means go to the parent class (Employee)
+        ↓
+Run Employee.__init__(first, last)
+         - self.first = "John"
+         - self.last = "Doe"
+        ↓
+Continue SalaryEmployee.__init__
+         - self.salary = 1000
 ```
 
 Final object `emp1` has:
