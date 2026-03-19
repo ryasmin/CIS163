@@ -46,7 +46,7 @@ class BankAccount:
 ```
 
 <details>
-  <summary>__Solution__ (Click to expand)</summary>
+  <summary> Solution (Click to expand)</summary>
   
   ```python
   import unittest
@@ -113,7 +113,7 @@ class BankAccount:
           with self.assertRaises(ValueError):
               self.acc1.transfer(self.acc2, 1000)
   
-      # Tests Equality Tests
+      # Tests Equality
       def test_account_equality_true(self):
           acc3 = BankAccount("Alice", 100.0)
           self.assertTrue(self.acc1 == acc3)
