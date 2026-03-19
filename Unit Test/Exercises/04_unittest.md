@@ -48,14 +48,14 @@ class BankAccount:
 <details>
   <summary> Solution (Click to expand)</summary>
   
-  ```python
-  import unittest
+```python
+import unittest
+from bank_account import BankAccount
 
-  class TestBankAccount(unittest.TestCase):
+class TestBankAccount(unittest.TestCase):
   
       def setUp(self):
           self.acc1 = BankAccount("Alice", 100.0)
-          self.acc2 = BankAccount("Bob", 50.0)
   
       # Test Constructor are correct
       def test_valid_account_creation(self):
@@ -75,57 +75,63 @@ class BankAccount:
 
       # Test Deposit
       def test_deposit_valid(self):
-          new_balance = self.acc1.deposit(50)
-          self.assertEqual(new_balance, 150.0)
+          test_cases = [
+            (50, 150.0),
+            (25.5, 125.5),
+            (0.1, 100.1),]
+
+          for amount, expected in test_cases:
+              with self.subTest(amount=amount):
+                  acc = BankAccount("Test", 100.0)
+                  acc.deposit(amount)
+                  self.assertAlmostEqual(acc.balance, expected, places=2)
   
       def test_deposit_invalid(self):
           with self.assertRaises(ValueError):
               self.acc1.deposit(-10)
   
-      def test_deposit_float(self):
-          self.acc1.deposit(0.1)
-          self.assertAlmostEqual(self.acc1.balance, 100.1, places=2)
-  
-      # Test Withdraw Tests
+      # Test Withdraw
       def test_withdraw_valid(self):
           new_balance = self.acc1.withdraw(40)
           self.assertEqual(new_balance, 60.0)
   
-      def test_withdraw_insufficient_funds(self):
-          with self.assertRaises(ValueError):
-              self.acc1.withdraw(200)
-  
-      def test_withdraw_invalid_amount(self):
-          with self.assertRaises(ValueError):
-              self.acc1.withdraw(0)
+      def test_withdraw_invalid(self):
+          invalid_cases = [0, -5, 200]
+
+          for amount in invalid_cases:
+              with self.subTest(amount=amount):
+                  with self.assertRaises(ValueError):
+                      self.acc1.withdraw(amount)
   
       # Test Transfer
       def test_transfer_valid(self):
-          self.acc1.transfer(self.acc2, 30)
+          acc2 = BankAccount("Bob", 50.0)
+          self.acc1.transfer(acc2, 30)
           self.assertEqual(self.acc1.balance, 70.0)
-          self.assertEqual(self.acc2.balance, 80.0)
+          self.assertEqual(acc2.balance, 80.0)
   
       def test_transfer_invalid_account(self):
           with self.assertRaises(TypeError):
               self.acc1.transfer("not_account", 10)
   
       def test_transfer_insufficient_funds(self):
+          acc2 = BankAccount("Bob", 50.0)
           with self.assertRaises(ValueError):
-              self.acc1.transfer(self.acc2, 1000)
+              self.acc1.transfer(acc2, 1000)
   
       # Tests Equality
-      def test_account_equality_true(self):
-          acc3 = BankAccount("Alice", 100.0)
-          self.assertTrue(self.acc1 == acc3)
-  
-      def test_account_equality_false(self):
-          self.assertFalse(self.acc1 == self.acc2)
+      def test_account_equality(self):
+          cases = [
+            (self.acc1, BankAccount("Alice", 100.0), True),
+            (self.acc1, BankAccount("Alice", 90.0), False),
+            (self.acc1, 100, False),]
 
-      def test_account_equality_invaid_account(self):
-          self.assertFalse(self.acc1 == 100)
+          for acc_a, acc_b, expected in cases:
+              with self.subTest(acc_a=acc_a, acc_b=acc_b):
+                  self.assertEqual(acc_a == acc_b, expected)
   
-  
-  if __name__ == "__main__":
-      unittest.main()
-  ```
+if __name__ == "__main__":
+    unittest.main()
+
+```
 </details>
