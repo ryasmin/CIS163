@@ -61,3 +61,4 @@ if __name__ == "__main__":
 A breakpoint is a marker you place in your code that tells the program:
 > “Pause execution here so I can inspect what’s happening.”
 
+/Images/python_debugger.png
