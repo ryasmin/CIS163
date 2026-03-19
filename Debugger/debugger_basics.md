@@ -14,6 +14,10 @@ A debugger lets you:
 - Go to Extensions 
 - Install: Python Debugger (by Microsoft)
 
+![](Images/python_debugger.png)
+
+<br>
+
 #### Step 2: Create a Python File
 Use the following code and name the file `starwars_students.py`.
 
@@ -57,8 +61,41 @@ if __name__ == "__main__":
 <br>
 
 ## Using the Debugger
-#### Set a Breakpoint
+#### Step 1: Set a Breakpoint
 A breakpoint is a marker you place in your code that tells the program:
 > “Pause execution here so I can inspect what’s happening.”
 
-/Images/python_debugger.png
+What to do:
+- Find this line inside `main()`: `score = s.calculate_score()`
+- Move your mouse to the left margin (gutter) of that line
+- Click once, you should now see a red dot 🔴
+
+![](Images/breakpoint.png)
+
+<br>
+
+#### Step 2: Start the Debugger
+- From the left panel select "__Run and Debug__"
+- Click "__Run and Debug__"
+
+![](Images/run_debugger.png)
+
+<br>
+
+First Time Only:
+- Select Debugger -> Python Debugger
+- Debug Configuration - Python File Debug the currently active Python File
+
+![](Images/first_time_1.png)
+![](Images/first_time_2.png)
+
+<br>
+
+#### Step 3: Program Pauses at Breakpoint
+
+The code will start running and stop at the breakpoint (highlighted in yellow). This means
+> Execution is PAUSED before running this line.
+
+![](Images/debugger_1.png)
+
+<br>
