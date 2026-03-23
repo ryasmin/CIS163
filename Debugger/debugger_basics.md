@@ -99,3 +99,19 @@ The code will start running and stop at the breakpoint (highlighted in yellow). 
 ![](Images/debugger_1.png)
 
 <br>
+
+#### Step 4: Understand the Debug Interface
+Look at three important areas:
+
+#### 🟦: 1. Variables Panel (Left Top)
+
+---
+
+Local Variables will have two items:
+- `s` -> current (first) student instance. Expand it, you will see:
+    - `name: "Luke"`
+    - `midterm: 85`
+    - `final: 95`
+- `students` -> student instance list
+
+#### 🟦: 2. Debug Control Panel (Top Middle)
