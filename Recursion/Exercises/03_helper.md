@@ -23,3 +23,5 @@ get_index(lst = [1, 0, 0, 1, 3, 0]) -> [1, 2, 5]
 #### Exercise 4: Find maximum element
 Write a recursive function that returns the maximum element in a list using a helper function. The helper should keep track of the current maximum.
 
+#### Exercise 5: Return All Subarrays
+Write a recursive function using a helper that takes a list (lst) and returns all possible subarrays of the list.
