@@ -3,6 +3,15 @@
 #### Exercise 1: Sum of list using index
 Write a recursive function that returns the sum of all elements in a list without using slicing. Use a helper function to keep track of the current index.
 
+<details>
+  <summary>Solution (With Helper) - Click to expand!</summary>
+
+  ```python
+  
+  ```
+
+</details>
+
 #### Exercise 2: First uppercase index
 Write a recursive function that returns the index of the first uppercase letter in a string. Use a helper function to track the current index.
 
