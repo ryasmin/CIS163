@@ -39,24 +39,3 @@ def largest_island(grid):
 print(largest_island(grid))  # Expected Output: 4
 ```
 
-#### Exercise 3: Tower of Hanoi
-Tower of Hanoi is a mathematical problem where we have three rods and n disks. 
-The goal of this puzzle is to move all the disks to another rod, obeying the following rules:
-- Move only one disk at a time.
-- You can't place a larger disk over a smaller disk.
-- The disks are put in ascending order of their size at the start.
-```
-def toh(n, start, aux, end):
-  pass
-
-toh(3, 'A', 'B', 'C')
-
-# Expected Output:
-Move disk 1 from A to C
-Move disk 2 from A to B
-Move disk 1 from C to B
-Move disk 3 from A to C
-Move disk 1 from B to A
-Move disk 2 from B to C
-Move disk 1 from A to C
-```
