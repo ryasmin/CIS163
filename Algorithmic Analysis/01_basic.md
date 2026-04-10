@@ -17,6 +17,8 @@ Time complexity describes how the number of operations grows as input size `n` i
 
 We are NOT measuring exact time (seconds). Instead, we focus on **growth behavior**.
 
+<br>
+
 ### 1. Constant Time — `O(1)`
 An operation is O(1) if it takes the same time regardless of input size.
 
@@ -26,6 +28,8 @@ Examples (Python List Operations):
 - `lst[i]` (access value)
 - `lst[i] = x` (update value)
 > These use direct access, so they do not depend on list size.
+
+<br>
 
 ### 2. Linear Time — `O(n)`
 An algorithm is `O(n)` if it processes each element once.
@@ -58,6 +62,8 @@ At first glance, this might look like a simple operation and therefore `O(1)`. W
 
 ---
 
+<br>
+
 ### 3. Quadratic Time — O(n²)
 Occurs usually when operations are nested.
 ```python
@@ -68,7 +74,6 @@ for i in range(n):
 - For each outer loop requires the inner loop runs $n$ times.
 - $n$ outer loop.
 - Total operations: $n \times n = n^2$
-
 ---
 
 #### Important Note: Summation Patterns
@@ -89,6 +94,8 @@ for i in range(n):
 - Total Operations: $0 + 1 + 2 + ..... + (n-1) = \frac{n(n-1)}{2} = \frac{n^2}{2} - \frac{n}{2}$
 ---
 
+<br>
+
 ### 4. Logarithmic Time — `O(logn)`
 Logarithmic time with base 2 ($log_2 n$) occurs when the problem size is reduced by half in each step.
 
@@ -100,6 +107,8 @@ while n >= 1:
 ```
 - $16 \rightarrow 8 \rightarrow 4 \rightarrow 2 \rightarrow 1$
 - For $n=16$, it takes 4 steps: $log_2n = log_216 = 4$
+
+<br>
 
 ### 5. Exponential Time — `O(2ⁿ)`
 Occurs when when the amount of work doubles at each step. 
@@ -195,6 +204,9 @@ func(m=[1,2,3],g1=0,g2=0)
 Even small increases in branching lead to huge growth, which is why exponential algorithms become impractical very quickly.
 
 ---
+
+<br>
+
 ### 6. Factorial Time — $O(n!)$
 Very fast growth — even worse than exponential.
 
