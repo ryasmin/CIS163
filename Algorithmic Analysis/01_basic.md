@@ -12,6 +12,8 @@ There are two main ways to analyze algorithms:
 
 In this course, we focus primarily on **Time Complexity**.
 
+<br>
+
 ## Time Complexity
 Time complexity describes how the number of operations grows as input size `n` increases.
 
@@ -22,7 +24,7 @@ We are NOT measuring exact time (seconds). Instead, we focus on **growth behavio
 ### 1. Constant Time — `O(1)`
 An operation is O(1) if it takes the same time regardless of input size.
 
-Examples (Python List Operations):
+#### 1.1. Examples (Python List Operations)
 - `append()`
 - `pop()`
 - `lst[i]` (access value)
@@ -40,9 +42,7 @@ for x in lst:
 ```
 If we let `n = len(lst)`, this loop runs once for each element, so it performs $n$ operations.
 
----
-
-#### Important Note: Not All Operations Are Equal
+#### 2.1. Not All Operations Are Equal
 It Is easy to assume that every **built-in method** takes constant time, but that Is not always true.
 To determine the actual time complexity, you need to think about what is happening behind the scenes. 
 For example: 
@@ -60,12 +60,12 @@ At first glance, this might look like a simple operation and therefore `O(1)`. W
 - Total operations: $1 + n - 1 = n$
 > So, `pop(0)` is `O(n)`, not `O(1)`.
 
----
-
 <br>
 
-### 3. Quadratic Time — O(n²)
+### 3. Quadratic Time — `O(n²)`
 Occurs usually when operations are nested.
+
+#### 3.1. Example: Nested Loops
 ```python
 for i in range(n):
     for j in range(n):
@@ -74,9 +74,8 @@ for i in range(n):
 - For each outer loop requires the inner loop runs $n$ times.
 - $n$ outer loop.
 - Total operations: $n \times n = n^2$
----
 
-#### Important Note: Summation Patterns
+#### 3.2. Summation Patterns
 Some algorithms don’t look like full nested loops but still behave similarly.
 ```python
 for i in range(n):
@@ -92,14 +91,13 @@ for i in range(n):
 | `i = n - 1`   | $n-1$ (`j = 0, 1, ..., n-2`)   | $n-1$      |
 
 - Total Operations: $0 + 1 + 2 + ..... + (n-1) = \frac{n(n-1)}{2} = \frac{n^2}{2} - \frac{n}{2}$
----
 
 <br>
 
 ### 4. Logarithmic Time — `O(logn)`
 Logarithmic time with base 2 ($log_2 n$) occurs when the problem size is reduced by half in each step.
 
-Example: Repeatedly dividing by 2
+#### 4.1. Example: Repeatedly dividing by 2
 ```python
 n = 16
 while n >= 1:
@@ -114,7 +112,7 @@ while n >= 1:
 Occurs when when the amount of work doubles at each step. 
 This usually happens in recursive problems where each function call generates multiple new calls.
 
-#### Example: Fibonacci Sequence
+#### 5.1. Example: Fibonacci Sequence
 ```python
                fib(4)
              ________|________
@@ -132,13 +130,12 @@ fib(1)    fib(0)
 - At each level, the number of calls roughly doubles.
 - $2 \times 2 \times 2 \times 2 = 16$ - Approximately $2^n=2^4=16$ operations.
 
-#### Example: Generating Subsets
+#### 5.2. Example: Generating Subsets
 For generating subsequences/ subarrays recursive problem, the caculation is the same.
 - At each step need to decide if we want to include/exclude the chosen value - create 2 new function calls.
 - If $n$ number of elements in list or string, that would create approximately $2^n$ branches.
 
----
-#### Extention: `O(3ⁿ)`
+#### 5.3. Extention: `O(3ⁿ)`
 Sometimes, each recursive call generates 3 new calls instead of 2. Consider the following scenario:
 
   _You are given a list of numbers (`m`) representing money, where each number is a bill or coin. 
@@ -203,14 +200,12 @@ func(m=[1,2,3],g1=0,g2=0)
 
 Even small increases in branching lead to huge growth, which is why exponential algorithms become impractical very quickly.
 
----
-
 <br>
 
 ### 6. Factorial Time — $O(n!)$
 Very fast growth — even worse than exponential.
 
-#### Example: GeneratingPermutations
+#### 6.1. Example: Generating Permutations
 _Generate all possible permutation of the string `ABC`._
 We build the result step by step:
 - Start with an empty string, `c = ""`.
@@ -247,3 +242,10 @@ Factorial growth becomes impractical very quickly:
 - $15! \approx$ 1.3 trillion
 
 Even small increases in $n$ lead to massive increases in work.
+
+<br>
+
+## Growth Behavior of Common Time Complexities
+![](time-complexity-examples.png)
+
+<small> Image Source: [Adrian Mejia](https://adrianmejia.com/how-to-find-time-complexity-of-an-algorithm-code-big-o-notation/)</small>
