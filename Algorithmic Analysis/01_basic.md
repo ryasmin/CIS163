@@ -31,10 +31,19 @@ An operation is O(1) if it takes the same time regardless of input size.
 - `lst[i] = x` (update value)
 > These use direct access, so they do not depend on list size.
 
+#### 1.2. Inportant Note
+Big-O notation focuses on how runtime grows as input size increases, not the exact number of steps.
+- If an operation always takes a fixed number of steps $\rightarrow$ it does not grow with $n$.
+- Therefore, it is treated as constant
+- Even 100 operations is still `O(1)`, because it is a constant and does not depend on input size.
+
+> `O(1)` DOES NOT mean "1 operation" — it means **"constant number of operations independent of input size."**
+
 <br>
 
 ### 2. Linear Time — `O(n)`
-An algorithm is `O(n)` if it processes each element once.
+An algorithm is `O(n)` if its runtime grows proportionally with the input size.
+In other words, if the input size doubles, the amount of work roughly doubles.
 ```python
 lst = [5, 7, 3]
 for x in lst:
@@ -42,7 +51,23 @@ for x in lst:
 ```
 If we let `n = len(lst)`, this loop runs once for each element, so it performs $n$ operations.
 
-#### 2.1. Not All Operations Are Equal
+#### 2.1. Inportant Note
+Big-O notation focuses on growth behavior, not exact counts.
+
+- If we have $n+c$ operations (where $c$ is a constant), it is still `O(n)`
+If we have $k \times n$ operations (where $k$ is a constant), it is still `O(n)`
+
+**Why?**
+- Constants do not change how the function grows as $n$ increases
+- As $n$ becomes very large, the constant becomes insignificant
+
+**Example:**
+- $n+100 \approx n$ for large $n$
+- $5n$ still grows linearly, just faster - but the shape of growth is the same
+
+> Linear time means the work scales with $n$, regardless of constant additions or multipliers.
+
+#### 2.2. Not All Operations Are Equal
 It Is easy to assume that every **built-in method** takes constant time, but that Is not always true.
 To determine the actual time complexity, you need to think about what is happening behind the scenes. 
 For example: 
@@ -90,7 +115,9 @@ for i in range(n):
 | ...           | ...                            | ...        |
 | `i = n - 1`   | $n-1$ (`j = 0, 1, ..., n-2`)   | $n-1$      |
 
-- Total Operations: $0 + 1 + 2 + ..... + (n-1) = \frac{n(n-1)}{2} = \frac{n^2}{2} - \frac{n}{2}$
+- Total Operations:
+
+  $$0 + 1 + 2 + ..... + (n-1) = \frac{n(n-1)}{2} = \frac{n^2}{2} - \frac{n}{2}$$
 
 <br>
 
